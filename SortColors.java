@@ -1,19 +1,28 @@
 class Solution {
     public void sortColors(int[] arr) {
-        List<Integer> list = new ArrayList<>();
+        // Dutch National Flag Algorithm
+        int low=0;
+        int mid=0;
+        int high=arr.length-1;
+        while(mid<=high)
+        {
+            if(arr[mid]==0)
+            {
+                // swapping arr[mid] and arr[low]
+                int temp=arr[mid];
+                arr[mid]=arr[low];
+                arr[low]=temp;
 
-        for (int it:arr) {
-            if (it == 0) list.add(it);
-        }
-        for (int it:arr) {
-            if (it == 1) list.add(it);
-        }
-        for (int it:arr) {
-            if (it == 2) list.add(it);
-        }
-        
-        for (int i = 0; i < arr.length; i++) {
-            arr[i]=list.get(i);
+                low++;
+                mid++;
+            } else if(arr[mid]==1) mid++;
+            else {
+                int temp=arr[mid];
+                arr[mid]=arr[high];
+                arr[high]=temp;
+
+                high--;
+            }
         }
     }
 }
